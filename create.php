@@ -1,4 +1,7 @@
-<?php include "koneksi.php"; ?>
+<?php
+include "koneksi.php";
+$prodi = mysqli_query($conn, "SELECT * FROM prodi");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,43 +9,55 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
+    <?php include "navbar.php"; ?>
 
-<div class="container py-5">
-    <div class="card shadow col-md-6 mx-auto">
+<div class="container mt-5 col-md-6">
+    <div class="card shadow">
         <div class="card-body">
-            <h3 class="text-center mb-4">Tambah Mahasiswa</h3>
+            <h4 class="text-center mb-4">Tambah Mahasiswa</h4>
 
             <form action="proses.php" method="post">
 
                 <div class="mb-3">
-                    <label class="form-label">NIM</label>
+                    <label>NIM</label>
                     <input type="text" name="nim" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Nama Mahasiswa</label>
+                    <label>Nama Mahasiswa</label>
                     <input type="text" name="nama_mhs" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Tanggal Lahir</label>
+                    <label>Tanggal Lahir</label>
                     <input type="date" name="tgl_lahir" class="form-control">
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Alamat</label>
+                    <label>Alamat</label>
                     <textarea name="alamat" class="form-control"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Simpan</button>
+                <div class="mb-3">
+                    <label>Program Studi</label>
+                    <select name="prodi_id" class="form-control" required>
+                        <option value="">-- Pilih Prodi --</option>
+                        <?php while($p = mysqli_fetch_assoc($prodi)) { ?>
+                            <option value="<?= $p['id']; ?>">
+                                <?= $p['nama_prodi']; ?> (<?= $p['jenjang']; ?>)
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary w-100">Simpan</button>
             </form>
 
-            <div class="text-center mt-3">
-                <a href="index.php" class="btn btn-secondary w-100">Kembali</a>
-            </div>
+            <a href="index.php" class="btn btn-secondary w-100 mt-2">Kembali</a>
         </div>
     </div>
 </div>
 
 </body>
+                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </html>

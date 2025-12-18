@@ -1,17 +1,17 @@
 <?php
 include "koneksi.php";
 
-$nim    = $_POST['nim'];
-$nama   = $_POST['nama_mhs'];
-$tgl    = $_POST['tgl_lahir'];
-$alamat = $_POST['alamat'];
+$nim   = $_POST['nim'];
+$nama  = $_POST['nama_mhs'];
+$tgl   = $_POST['tgl_lahir'];
+$alamat= $_POST['alamat'];
+$prodi = $_POST['prodi_id'];
 
-$sql = "INSERT INTO mahasiswa (nim, nama_mhs, tgl_lahir, alamat)
-        VALUES ('$nim', '$nama', '$tgl', '$alamat')";
+$sql = "INSERT INTO mahasiswa 
+(nim, nama_mhs, tgl_lahir, alamat, prodi_id)
+VALUES 
+('$nim','$nama','$tgl','$alamat','$prodi')";
 
-if (mysqli_query($conn, $sql)) {
-    echo "<script>alert('Data berhasil disimpan!'); window.location='list.php';</script>";
-} else {
-    echo "<script>alert('Gagal menyimpan data!'); window.location='create.php';</script>";
-}
-?>
+mysqli_query($conn, $sql);
+
+header("Location: list.php");
