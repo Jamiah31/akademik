@@ -12,6 +12,6 @@ $sql = "INSERT INTO mahasiswa
 VALUES 
 ('$nim','$nama','$tgl','$alamat','$prodi')";
 
-mysqli_query($conn, $sql);
+mysqli_query($koneksi, $sql);
 
 header("Location: list.php");

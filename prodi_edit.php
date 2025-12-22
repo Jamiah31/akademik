@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$p = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM prodi WHERE id='$id'"));
+$p = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM prodi WHERE id='$id'"));
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,8 +14,8 @@ $p = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM prodi WHERE id='$id'"
 
 <div class="container mt-5 col-md-6">
     <h3>Edit Prodi</h3>
-
-    <form action="prodi_update.php?id=<?= $id ?>" method="post">
+   
+    <form action="prodi_edit.php?id=<?= $id ?>" method="post">
         <input type="text" name="nama_prodi" value="<?= $p['nama_prodi'] ?>" class="form-control mb-3">
         <select name="jenjang" class="form-control mb-3">
             <option <?= $p['jenjang']=='D2'?'selected':'' ?>>D2</option>

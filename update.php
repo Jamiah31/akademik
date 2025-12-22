@@ -14,6 +14,6 @@ $sql = "UPDATE mahasiswa SET
         prodi_id='$prodi'
         WHERE nim='$nim'";
 
-mysqli_query($conn, $sql);
+mysqli_query($koneksi, $sql);
 
 header("Location: list.php");

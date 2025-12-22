@@ -5,7 +5,7 @@ $sql = "SELECT m.*, p.nama_prodi, p.jenjang
         FROM mahasiswa m
         LEFT JOIN prodi p ON m.prodi_id = p.id";
 
-$data = mysqli_query($conn, $sql);
+$data = mysqli_query($koneksi, $sql);
 ?>
 <!DOCTYPE html>
 <html>

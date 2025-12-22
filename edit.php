@@ -5,11 +5,11 @@ $nim = $_GET['nim'];
 
 // ambil data mahasiswa
 $mhs = mysqli_fetch_assoc(
-    mysqli_query($conn, "SELECT * FROM mahasiswa WHERE nim='$nim'")
+    mysqli_query($koneksi, "SELECT * FROM mahasiswa WHERE nim='$nim'")
 );
 
 // ambil data prodi
-$prodi = mysqli_query($conn, "SELECT * FROM prodi");
+$prodi = mysqli_query($koneksi, "SELECT * FROM prodi");
 ?>
 <!DOCTYPE html>
 <html>

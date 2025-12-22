@@ -1,6 +1,6 @@
 <?php
 include "koneksi.php";
-$data = mysqli_query($conn, "SELECT * FROM prodi");
+$data = mysqli_query($koneksi, "SELECT * FROM prodi");
 ?>
 <!DOCTYPE html>
 <html>

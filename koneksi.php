@@ -1,12 +1,7 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "db_akademik";
+$koneksi = mysqli_connect("localhost", "root", "", "db_akademik");
 
-$conn = mysqli_connect($host, $user, $pass, $dbname);
-
-if (!$conn) {
+if (!$koneksi) {
     die("Koneksi gagal: " . mysqli_connect_error());
 }
 ?>

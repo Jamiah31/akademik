@@ -32,7 +32,8 @@
             <textarea name="keterangan" class="form-control"></textarea>
         </div>
 
-        <button class="btn btn-primary">Simpan</button>
+        <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+
         <a href="prodi_list.php" class="btn btn-secondary">Kembali</a>
     </form>
 </div>

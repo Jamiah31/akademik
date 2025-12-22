@@ -1,6 +1,6 @@
 <?php
 include "koneksi.php";
-$prodi = mysqli_query($conn, "SELECT * FROM prodi");
+$prodi = mysqli_query($koneksi, "SELECT * FROM prodi");
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,5 +59,5 @@ $prodi = mysqli_query($conn, "SELECT * FROM prodi");
 </div>
 
 </body>
-                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>                      
 </html>
