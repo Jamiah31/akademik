@@ -15,17 +15,32 @@ $p = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM prodi WHERE id='$i
 <div class="container mt-5 col-md-6">
     <h3>Edit Prodi</h3>
    
-    <form action="prodi_edit.php?id=<?= $id ?>" method="post">
-        <input type="text" name="nama_prodi" value="<?= $p['nama_prodi'] ?>" class="form-control mb-3">
-        <select name="jenjang" class="form-control mb-3">
-            <option <?= $p['jenjang']=='D2'?'selected':'' ?>>D2</option>
-            <option <?= $p['jenjang']=='D3'?'selected':'' ?>>D3</option>
-            <option <?= $p['jenjang']=='D4'?'selected':'' ?>>D4</option>
-            <option <?= $p['jenjang']=='S1'?'selected':'' ?>>S1</option>
-        </select>
-        <textarea name="keterangan" class="form-control mb-3"><?= $p['keterangan'] ?></textarea>
+    <form method="post" action="prodi_update.php">
+        <input type="hidden" name="id" value="<?= $p['id']; ?>">
 
-        <button class="btn btn-warning">Update</button>
+        <div class="mb-3">
+            <label>Nama Prodi</label>
+            <input type="text" name="nama_prodi" class="form-control" value="<?= $p['nama_prodi']; ?>" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Jenjang</label>
+            <select name="jenjang" class="form-control" required>
+                <option value="D2" <?= $p['jenjang']=='D2'?'selected':'' ?>>D2</option>
+                <option value="D3" <?= $p['jenjang']=='D3'?'selected':'' ?>>D3</option>
+                <option value="D4" <?= $p['jenjang']=='D4'?'selected':'' ?>>D4</option>
+                <option value="S2" <?= $p['jenjang']=='S2'?'selected':'' ?>>S2</option>
+            </select>
+         </div>
+
+        <div class="mb-3">
+            <label>Keterangan</label>
+            <textarea name="keterangan" class="form-control"><?= $p['keterangan']; ?></textarea>
+        </div>
+   
+        <button type="submit" name="update" class="btn btn-warning">
+                Update
+        </button>
     </form>
 </div>
 
