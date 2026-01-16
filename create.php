@@ -1,63 +1,75 @@
 <?php
-include "koneksi.php";
-$prodi = mysqli_query($koneksi, "SELECT * FROM prodi");
+session_start();
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
+
+include 'koneksi.php';
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
     <title>Tambah Mahasiswa</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-    <?php include "navbar.php"; ?>
 
-<div class="container mt-5 col-md-6">
-    <div class="card shadow">
-        <div class="card-body">
-            <h4 class="text-center mb-4">Tambah Mahasiswa</h4>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.php">Akademik</a>
+    </div>
+</nav>
 
-            <form action="proses.php" method="post">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
 
-                <div class="mb-3">
-                    <label>NIM</label>
-                    <input type="text" name="nim" class="form-control" required>
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Tambah Data Mahasiswa</h5>
                 </div>
 
-                <div class="mb-3">
-                    <label>Nama Mahasiswa</label>
-                    <input type="text" name="nama_mhs" class="form-control" required>
+                <div class="card-body">
+                    <form action="proses.php" method="POST">
+
+                        <div class="mb-3">
+                            <label class="form-label">NIM</label>
+                            <input type="text" name="nim" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Nama Mahasiswa</label>
+                            <input type="text" name="nama" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Program Studi</label>
+                            <select name="prodi_id" class="form-select" required>
+                                <option value="">-- Pilih Prodi --</option>
+                                <?php
+                                $query = mysqli_query($koneksi, "SELECT * FROM prodi");
+                                while ($row = mysqli_fetch_assoc($query)) {
+                                    echo "<option value='{$row['id']}'>{$row['nama_prodi']} ({$row['jenjang']})</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="list.php" class="btn btn-secondary">Kembali</a>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+
+                    </form>
                 </div>
+            </div>
 
-                <div class="mb-3">
-                    <label>Tanggal Lahir</label>
-                    <input type="date" name="tgl_lahir" class="form-control">
-                </div>
-
-                <div class="mb-3">
-                    <label>Alamat</label>
-                    <textarea name="alamat" class="form-control"></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label>Program Studi</label>
-                    <select name="prodi_id" class="form-control" required>
-                        <option value="">-- Pilih Prodi --</option>
-                        <?php while($p = mysqli_fetch_assoc($prodi)) { ?>
-                            <option value="<?= $p['id']; ?>">
-                                <?= $p['nama_prodi']; ?> (<?= $p['jenjang']; ?>)
-                            </option>
-                        <?php } ?>
-                    </select>
-                </div>
-
-                <button class="btn btn-primary w-100">Simpan</button>
-            </form>
-
-            <a href="index.php" class="btn btn-secondary w-100 mt-2">Kembali</a>
         </div>
     </div>
 </div>
 
 </body>
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>                      
 </html>
